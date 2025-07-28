@@ -1,0 +1,1688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce Website</title>
+    <style>
+        /* Base Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9fafb;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+       /* Header Styles */
+        header {
+            background-color: white;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background-color: #3b82f6;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .logo-text {
+            margin-left: 8px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #3b82f6;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            max-width: 512px;
+            margin: 0 16px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .category-select {
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            padding: 8px 12px;
+            margin: 0 8px;
+            font-size: 14px;
+        }
+
+        .search-button {
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .search-button:hover {
+            background-color: #2563eb;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .language-selector, .shipping-info {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: #4b5563;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            padding: 12px 0;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .nav-item {
+            font-size: 14px;
+            color: #4b5563;
+            text-decoration: none;
+        }
+
+        .nav-item:hover {
+            color: #3b82f6;
+        }
+
+/* Logo Image */
+.logo-image {
+    width: 100px;
+    height: 50px;
+    object-fit: contain;
+}
+
+/* Dropdown Styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+    color: #4b5563;
+    padding: 8px;
+    transition: all 0.2s ease;
+}
+
+.dropdown:hover .dropdown-toggle {
+    color: #3b82f6;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    z-index: 100;
+    padding: 8px 0;
+    top: 100%;
+    left: 0;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.wide-menu {
+    width: 600px;
+    padding: 16px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    left: 0;
+    right: auto;
+}
+
+.dropdown-column {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.dropdown-title {
+    font-weight: 600;
+    padding: 8px 16px;
+    color: #111827;
+}
+
+.dropdown-item {
+    padding: 8px 16px;
+    color: #4b5563;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.dropdown-item:hover {
+    background-color: #f3f4f6;
+    color: #3b82f6;
+    padding-left: 20px;
+}
+
+.dropdown-divider {
+    height: 1px;
+    background-color: #e5e7eb;
+    margin: 8px 0;
+}
+
+/* Icon Buttons */
+.icon-button {
+    cursor: pointer;
+    padding: 8px;
+    font-size: 18px;
+}
+
+.icon-button:hover {
+    color: #3b82f6;
+}
+
+        /* Main Content Layout */
+        .main-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+            padding: 24px 0;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            grid-column: span 2;
+        }
+
+        .sidebar-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+
+        .category-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .category-item {
+            font-size: 14px;
+            color: #374151;
+            padding: 8px 0;
+            cursor: pointer;
+        }
+
+        .category-item:hover {
+            color: #3b82f6;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            grid-column: span 8;
+        }
+
+       /* Hero Banner */
+.hero-banner {
+    position: relative;
+    background: url('Image/tech/hero.jpg') center/cover no-repeat;
+    border-radius: 8px;
+    padding: 60px 40px;
+    margin-bottom: 24px;
+    color: white;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.hero-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 50%;
+}
+
+.hero-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.hero-subtitle {
+    font-size: 22px;
+    margin-bottom: 24px;
+    font-weight: 500;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.hero-button {
+    background-color: white;
+    color: #1f2937;
+    border: none;
+    border-radius: 4px;
+    padding: 12px 24px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.hero-button:hover {
+    background-color: #f3f4f6;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+        /* Deals Section */
+        .deals-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .deals-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .deals-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .timer {
+            display: flex;
+            gap: 8px;
+        }
+
+        .timer-item {
+            background-color: #1f2937;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .deals-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+        }
+
+        .deal-item {
+            text-align: center;
+        }
+
+        .deal-image {
+            position: relative;
+            margin-bottom: 8px;
+            width: 100px;
+        }
+
+        .deal-img {
+            width: 100%;
+            height: 96px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .deal-discount {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background-color: #ef4444;
+            color: white;
+            font-size: 12px;
+            padding: 2px 4px;
+            border-radius: 2px;
+        }
+
+        .deal-name {
+            font-size: 14px;
+            color: #374151;
+        }
+
+       /* Product Sections */
+.product-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.product-section {
+    background-color: white;
+    border-radius: 8px;
+    padding: 0;
+    overflow: hidden;
+}
+
+.product-header {
+    display: flex;
+    gap: 0;
+    margin-bottom: 0;
+    align-items: flex-start;
+}
+
+.product-icon {
+    width: 180px;
+    height: 240px;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 16px;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.image-overlay-text {
+    position: relative;
+    z-index: 2;
+    color:white;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+.product-link {
+    position: relative;
+    z-index: 2;
+    color: #1f2937;
+    background-color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: 0;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    padding: 16px;
+    flex: 1;
+}
+
+.product-item {
+    text-align: center;
+    background-color: #f9fafb;
+    padding: 12px;
+    border-radius: 8px;
+    transition: transform 0.2s ease;
+}
+
+.product-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.product-item-img {
+    width: 100%;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 8px;
+}
+
+.product-price {
+    font-size: 12px;
+    color: #4b5563;
+    margin-bottom: 4px;
+    font-weight: 500;
+}
+
+.product-item-name {
+    font-size: 12px;
+    color: #1f2937;
+    font-weight: 500;
+}
+
+/* Specific background colors for different sections */
+.product-section:nth-child(1) .product-icon {
+    background-color: #fef08a; /* Yellow for home section */
+}
+
+.product-section:nth-child(2) .product-icon {
+    background-color: #fce7f3; /* Pink for electronics section */
+}
+        /* Quote Section */
+        .quote-section {
+            background: linear-gradient(to right, #3b82f6, #2dd4bf);
+            border-radius: 8px;
+            padding: 24px;
+            color: white;
+            margin-bottom: 24px;
+        }
+
+        .quote-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+
+        .quote-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .quote-text {
+            color: #bfdbfe;
+            margin-bottom: 16px;
+        }
+
+        .quote-form {
+            background-color: white;
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .form-title {
+            color: #1f2937;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            box-sizing: border-box;
+        }
+
+        .form-textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            resize: vertical;
+            min-height: 80px;
+            box-sizing: border-box;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            color: #1f2937;
+            box-sizing: border-box;
+        }
+
+        .form-button {
+            width: 100%;
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 12px;
+            cursor: pointer;
+        }
+
+        .form-button:hover {
+            background-color: #2563eb;
+        }
+
+        /* Recommended Items */
+        .recommended-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 24px;
+        }
+
+        .recommended-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .recommended-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-content {
+            padding: 12px;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 128px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+
+        .card-price {
+            font-size: 14px;
+            font-weight: 600;
+            color: #3b82f6;
+            margin-bottom: 4px;
+        }
+
+        .card-name {
+            font-size: 12px;
+            color: #4b5563;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Services Section */
+        .services-section {
+            margin-top: 32px;
+        }
+
+        .services-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .service-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-img {
+            width: 100%;
+            height: 128px;
+            object-fit: cover;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .service-content {
+            padding: 12px;
+        }
+
+        .service-title {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Regions Section */
+        .regions-section {
+            margin-top: 32px;
+            background-color: white;
+            border-radius: 8px;
+            padding: 24px;
+        }
+
+        .regions-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .regions-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+        }
+
+        .region-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .region-flag {
+            font-size: 18px;
+        }
+        .region-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.region-item:hover {
+    background-color: #f3f4f6;
+}
+
+.region-item img {
+    border-radius: 1px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+        /* Newsletter */
+        .newsletter-section {
+            margin-top: 32px;
+            background-color: white;
+            border-radius: 8px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .newsletter-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .newsletter-text {
+            color: #4b5563;
+            margin-bottom: 16px;
+            max-width: 512px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            max-width: 448px;
+            margin: 0 auto;
+        }
+
+        .newsletter-input {
+            padding: 8px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            flex: 1;
+        }
+
+        .newsletter-button {
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+
+        .newsletter-button:hover {
+            background-color: #2563eb;
+        }
+
+        /* Right Sidebar */
+        .right-sidebar {
+            grid-column: span 2;
+        }
+
+        .user-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .user-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .user-icon {
+            margin-right: 8px;
+        }
+
+        .user-text {
+            font-size: 14px;
+        }
+
+        .user-button {
+            width: 100%;
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+
+        .user-button:hover {
+            background-color: #2563eb;
+        }
+
+        .user-button-outline {
+            width: 100%;
+            background-color: transparent;
+            color: #3b82f6;
+            border: 1px solid #3b82f6;
+            border-radius: 4px;
+            padding: 8px;
+            cursor: pointer;
+        }
+
+        .promo-card-orange {
+            background-color: #f97316;
+            color: white;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .promo-card-teal {
+            background-color: #14b8a6;
+            color: white;
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .promo-text {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+      /* Footer Styles */
+footer {
+    background-color: white;
+    border-top: 1px solid #e5e7eb;
+    margin-top: 48px;
+}
+
+.footer-container {
+    padding: 40px 0 20px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr repeat(5, 1fr);
+    gap: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.footer-logo-icon {
+    width: 32px;
+    height: 32px;
+    background-color: #3b82f6;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.footer-logo-text {
+    margin-left: 8px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #3b82f6;
+}
+
+.footer-text {
+    font-size: 14px;
+    color: #4b5563;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.social-icons {
+    display: flex;
+    gap: 12px;
+}
+
+.social-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+}
+
+.social-icon:hover {
+    transform: translateY(-2px);
+}
+
+.social-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.footer-title {
+    font-weight: 600;
+    margin-bottom: 16px;
+    font-size: 16px;
+    color: #1f2937;
+}
+
+.footer-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-list li {
+    margin-bottom: 12px;
+}
+
+.footer-list a {
+    font-size: 14px;
+    color: #4b5563;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-list a:hover {
+    color: #3b82f6;
+}
+
+.app-images {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.app-img {
+    height: 70px;
+    width: 70px;
+    border-radius: 6px;
+    transition: transform 0.2s ease;
+}
+
+.app-img:hover {
+    transform: translateY(-2px);
+}
+
+.footer-bottom {
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: #4b5563;
+}
+
+.language-selector-footer {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="home page.html"><img src="Image/flags/logo.png" class="logo-image"></a>
+            </div>
+            
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search" id="searchInput">
+                <select class="category-select" id="categorySelect">
+                    <option value="all">All category</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="home-garden">Home & Garden</option>
+                </select>
+                <button class="search-button" id="searchButton">Search</button>
+            </div>
+
+           <div class="header-actions">
+    <a href="profile.html" class="icon-button" id="userButton">👤</a>
+    <a href="wishlist.html" class="icon-button" id="wishlistButton">❤️</a>
+    <a href="cart.html" class="icon-button" id="cartButton">🛒</a>
+</div>
+
+        </div>
+
+        <div class="container">
+            <nav class="nav-menu">
+                <!-- All Categories Mega Dropdown -->
+                <div class="dropdown">
+                    <button class="nav-item dropdown-toggle">
+                        ☰ All category
+                        <span>▼</span>
+                    </button>
+                    <div class="dropdown-menu wide-menu">
+                        <div class="dropdown-column">
+                            <div class="dropdown-title">Home & Garden</div>
+                            <a href="product-listing.html?category=furniture" class="dropdown-item">Furniture</a>
+                            <a href="product-listing.html?category=kitchen" class="dropdown-item">Kitchen</a>
+                            <a href="product-listing.html?category=decor" class="dropdown-item">Decor</a>
+                            <a href="product-listing.html?category=garden" class="dropdown-item">Garden</a>
+                        </div>
+                        <div class="dropdown-column">
+                            <div class="dropdown-title">Electronics</div>
+                            <a href="product-listing.html?category=smartphones" class="dropdown-item">Smartphones</a>
+                            <a href="product-listing.html?category=laptops" class="dropdown-item">Laptops</a>
+                            <a href="product-listing.html?category=cameras" class="dropdown-item">Cameras</a>
+                            <a href="product-listing.html?category=accessories" class="dropdown-item">Accessories</a>
+                        </div>
+                        <div class="dropdown-column">
+                            <div class="dropdown-title">Clothing</div>
+                            <a href="product-listing.html?category=men" class="dropdown-item">Men's Wear</a>
+                            <a href="product-listing.html?category=women" class="dropdown-item">Women's Wear</a>
+                            <a href="product-listing.html?category=kids" class="dropdown-item">Kids</a>
+                            <a href="product-listing.html?category=accessories" class="dropdown-item">Accessories</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="product-listing.html?filter=hot-offers" class="nav-item">Hot offers</a>
+                <a href="product-listing.html?filter=gift-boxes" class="nav-item">Gift boxes</a>
+                <a href="#" class="nav-item">Projects</a>
+                
+                <!-- Help Dropdown -->
+                <div class="dropdown">
+                    <button class="nav-item dropdown-toggle">
+                        Help
+                        <span>▼</span>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="help.html" class="dropdown-item">Contact Us</a></br>
+                        <a href="help.html" class="dropdown-item">FAQs</a></br>
+                        <a href="help.html" class="dropdown-item">Shipping Info</a></br>
+                        <a href="help.html" class="dropdown-item">Returns Policy</a></br>
+                    </div>
+                </div>
+                
+                <!-- Language/Currency Dropdown -->
+                <div class="dropdown">
+                    <button class="dropdown-toggle">
+                        <span>🌐</span>
+                        English, USD
+                        <span>▼</span>
+                    </button>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-title">Language</div>
+                        <a href="#" class="dropdown-item">English</a></br>
+                        <a href="#" class="dropdown-item">Spanish</a></br>
+                        <a href="#" class="dropdown-item">French</a></br>
+                    </div>
+                </div>
+
+                <!-- Shipping Dropdown -->
+                <div class="dropdown">
+                    <button class="dropdown-toggle">
+                        Ship to <span>🇺🇸</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-title">Shipping Country</div>
+                        <a href="#" class="dropdown-item">🇺🇸 United States</a></br>
+                        <a href="#" class="dropdown-item">🇬🇧 United Kingdom</a></br>
+                        <a href="#" class="dropdown-item">🇨🇦 Canada</a></br>
+                        <a href="#" class="dropdown-item">🇦🇺 Australia</a></br>
+                        <a href="#" class="dropdown-item">🇪🇺 European Union</a></br>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="main-grid">
+            <!-- Left Sidebar -->
+            <div class="sidebar">
+                <div class="sidebar-card">
+                    <ul class="category-list">
+                        <li class="category-item">Automobiles</li>
+                        <li class="category-item">Clothes and wear</li>
+                        <li class="category-item">Home interiors</li>
+                        <li class="category-item">Computer and tech</li>
+                        <li class="category-item">Tools, equipments</li>
+                        <li class="category-item">Sports and outdoor</li>
+                        <li class="category-item">Animal and pets</li>
+                        <li class="category-item">Machinery tools</li>
+                        <li class="category-item">More category</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Hero Banner -->
+<div class="hero-banner">
+    <div class="hero-content">
+        <h2 class="hero-title">Latest trending</h2>
+        <h3 class="hero-subtitle">Electronic items</h3>
+        <button class="hero-button">Learn more</button>
+    </div>
+</div>
+                <!-- Deals Section -->
+                <div class="deals-section">
+                    <div class="deals-header">
+                        <h3 class="deals-title">Deals and offers</h3>
+                        <div class="timer">
+                            <div class="timer-item">04</div>
+                            <div class="timer-item">23</div>
+                            <div class="timer-item">59</div>
+                            <div class="timer-item">02</div>
+                        </div>
+                    </div>
+                    <div class="deals-grid">
+                        <div class="deal-item">
+                            <div class="deal-image">
+                                <a href="product-listing.html?category=smart-watches">
+                                <img src="Image/tech/8.png" alt="Smart watches" class="deal-img">
+                                </a>
+                                <span class="deal-discount">-25%</span>
+                            </div>
+                            <a href="product-listing.html?category=smart-watches" class="deal-name">Smart watches</a>
+                        </div>
+                        <div class="deal-item">
+                            <div class="deal-image">
+                                <a href="product-listing.html?category=laptops">
+                                      <img src="Image/tech/7.png" alt="Laptops" class="deal-img">
+                                </a>
+                                <span class="deal-discount">-15%</span>
+                            </div>
+                            <a href="product-listing.html?category=laptops" class="deal-name">Laptops</a>
+                        </div>
+                        <div class="deal-item">
+                            <div class="deal-image">
+                                 <a href="product-listing.html?category=GoPro cameras">
+                                <img src="Image/tech/6.png" alt="GoPro cameras" class="deal-img">
+                                </a>
+                                <span class="deal-discount">-40%</span>
+                            </div>
+                            <a href="product-listing.html?category=GoPro cameras" class="deal-name">GoPro cameras</a>
+                        </div>
+                        <div class="deal-item">
+                            <div class="deal-image">
+                                <a href="product-listing.html?category=Headphones">
+                                <img src="Image/tech/9.png" alt="Headphones" class="deal-img">
+                                </a>
+                                <span class="deal-discount">-25%</span>
+                            </div>
+                            <a href="product-listing.html?category=Headphones" class="deal-name">Headphones</a>
+                        </div>
+                        <div class="deal-item">
+                            <div class="deal-image">
+                                 <a href="product-listing.html?category=Canon Phones">
+                                <img src="Image/tech/3.png" alt="Canon Phones" class="deal-img">
+                                </a>
+                                <span class="deal-discount">-20%</span>
+                            </div>
+                             <a href="product-listing.html?category=Canon Phones" class="deal-name">Canon Phones</a>
+                        </div>
+                    </div>
+                </div>
+
+              <!-- Home and Outdoor Section -->
+<div class="product-sections">
+    <div class="product-section">
+        <div class="product-header">
+            <div class="product-icon">
+                <img src="Image/interior/home.jpeg" alt="Home" class="product-img">
+                <div class="image-overlay-text">Home and outdoor</div>
+                <button class="product-link">Source now</button>
+            </div>
+            <div class="product-grid">
+                <div class="product-item">
+                    <img src="Image/interior/1.png" alt="Soft chairs" class="product-item-img">
+                    <p class="product-price">From USD 19</p>
+                    <p class="product-item-name">Soft chairs</p>
+                </div>
+                <div class="product-item">
+                    <img src="Image/interior/2.png" alt="Sofa & chair" class="product-item-img">
+                    <p class="product-price">From USD 19</p>
+                    <p class="product-item-name">Sofa & chair</p>
+                </div>
+                <div class="product-item">
+                    <img src="Image/interior/5.png" alt="Kitchen mixer" class="product-item-img">
+                    <p class="product-price">From USD 100</p>
+                    <p class="product-item-name">Kitchen mixer</p>
+                </div>
+                <div class="product-item">
+                    <img src="Image/interior/4.png" alt="Kitchen dishes" class="product-item-img">
+                    <p class="product-price">From USD 19</p>
+                    <p class="product-item-name">Kitchen dishes</p>
+                </div>
+                <div class="product-item">
+                    <img src="Image/interior/9.png" alt="Blenders" class="product-item-img">
+                    <p class="product-price">From USD 39</p>
+                    <p class="product-item-name">Blenders</p>
+                </div>
+                <div class="product-item">
+                    <img src="Image/interior/10.png" alt="Home appliance" class="product-item-img">
+                    <p class="product-price">From USD 19</p>
+                    <p class="product-item-name">Home appliance</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Consumer Electronics Section -->
+    <div class="product-section">
+        <div class="product-header">
+            <div class="product-icon">
+                <img src="Image/interior/accessories.jpg" alt="Consumer" class="product-img">
+                <div class="image-overlay-text">Consumer electronics and gadgets</div>
+                <button class="product-link">Source now</button>
+            </div>
+            <div class="product-grid">
+                <div class="product-item">
+                    <img src="Image/tech/8.png" alt="Smart watches" class="product-item-img">
+                    <p class="product-price">From USD 19</p>
+                    <p class="product-item-name">Smart watches</p>
+                </div>
+                <div class="product-item">
+                    <img src="Image/tech/6.png" alt="Cameras" class="product-item-img">
+                    <p class="product-price">From USD 89</p>
+                    <p class="product-item-name">Cameras</p>
+                </div>
+                <div class="product-item">
+                    <img src="Image/tech/9.png" alt="Headphones" class="product-item-img">
+                    <p class="product-price">From USD 10</p>
+                    <p class="product-item-name">Headphones</p>
+                </div>
+                <div class="product-item">
+                    <img src="Image/tech/8.png" alt="Smart watches" class="product-item-img">
+                    <p class="product-price">From USD 90</p>
+                    <p class="product-item-name">Smart watches</p>
+                </div>
+                <div class="product-item">
+                    <img src="Image/tech/5.png" alt="Gaming set" class="product-item-img">
+                    <p class="product-price">From USD 35</p>
+                    <p class="product-item-name">Gaming set</p>
+                </div>
+                <div class="product-item">
+                    <img src="Image/tech/7.png" alt="Laptops & PC" class="product-item-img">
+                    <p class="product-price">From USD 340</p>
+                    <p class="product-item-name">Laptops & PC</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Quote Request Section -->
+                <div class="quote-section">
+                    <div class="quote-grid">
+                        <div>
+                            <h3 class="quote-title">An easy way to send requests to all suppliers</h3>
+                            <p class="quote-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+                        </div>
+                        <div class="quote-form">
+                            <h4 class="form-title">Send quote to suppliers</h4>
+                            <input type="text" class="form-input" placeholder="What item you need?">
+                            <textarea class="form-textarea" placeholder="Type more details"></textarea>
+                            <div class="form-grid">
+                                <input type="text" class="form-input" placeholder="Quantity">
+                                <select class="form-select">
+                                    <option>Pcs</option>
+                                </select>
+                            </div>
+                            <button class="form-button">Send inquiry</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Recommended Items -->
+                <div class="recommended-section">
+                    <h3 class="recommended-title">Recommended items</h3>
+                    <div class="recommended-grid">
+                        <div class="card">
+                            <div class="card-content">
+                                <img src="Image/cloth/1.png" alt="T-shirts" class="card-img">
+                                <p class="card-price">$10.30</p>
+                                <p class="card-name">T-shirts with multiple colors, for men</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-content">
+                                <img src="Image/cloth/4.png" alt="Jeans shorts" class="card-img">
+                                <p class="card-price">$10.30</p>
+                                <p class="card-name">Jeans shorts for men blue color</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-content">
+                                <img src="Image/cloth/3.png" alt="Winter coat" class="card-img">
+                                <p class="card-price">$12.50</p>
+                                <p class="card-name">Brown winter coat medium size</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-content">
+                                <img src="Image/cloth/5.png" alt="Jeans bag" class="card-img">
+                                <p class="card-price">$34.00</p>
+                                <p class="card-name">Jeans bag for travel for men</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-content">
+                                <img src="Image/cloth/6.png" alt="Leather wallet" class="card-img">
+                                <p class="card-price">$99.00</p>
+                                <p class="card-name">Leather wallet</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-content">
+                                <img src="Image/tech/6.png" alt="Canon camera" class="card-img">
+                                <p class="card-price">$9.99</p>
+                                <p class="card-name">Canon camera black, 100x zoom</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-content">
+                                <img src="Image/tech/8.png" alt="Headset" class="card-img">
+                                <p class="card-price">$8.99</p>
+                                <p class="card-name">Headset for gaming with mic</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-content">
+                                <img src="Image/tech/1.png" alt="Smart watch" class="card-img">
+                                <p class="card-price">$10.30</p>
+                                <p class="card-name">Smart watch waterproof</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-content">
+                                <img src="Image/cloth/7.png" alt="Blue wallet" class="card-img">
+                                <p class="card-price">$10.30</p>
+                                <p class="card-name">Blue coat for men, cotton material</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Services Section -->
+                <div class="services-section">
+                    <h3 class="services-title">Our extra services</h3>
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <img src="Image/extra service/source.png" alt="Source from Industry Hubs" class="service-img">
+                            <div class="service-content">
+                                <p class="service-title">Source from Industry Hubs</p>
+                            </div>
+                        </div>
+                        <div class="service-card">
+                            <img src="Image/extra service/customize.png" alt="Customize Your Products" class="service-img">
+                            <div class="service-content">
+                                <p class="service-title">Customize Your Products</p>
+                            </div>
+                        </div>
+                        <div class="service-card">
+                            <img src="Image/extra service/fast.png" alt="Fast shipping" class="service-img">
+                            <div class="service-content">
+                                <p class="service-title">Fast, reliable shipping by ocean or air</p>
+                            </div>
+                        </div>
+                        <div class="service-card">
+                            <img src="Image/extra service/product.png" alt="Product monitoring" class="service-img">
+                            <div class="service-content">
+                                <p class="service-title">Product monitoring and inspection</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+               <!-- Regions Section -->
+<div class="regions-section">
+    <h3 class="regions-title">Suppliers by region</h3>
+    <div class="regions-grid">
+        <div class="region-item">
+            <img src="Image/flags/Property 1=AE.png" alt="Arabic Emirates" class="region-flag" style="width: 24px; height: 24px;">
+            <div>
+                <span>Arabic Emirates</span>
+                <p style="font-size: 12px; color: #6b7280; margin: 4px 0 0;">shopname.ae</p>
+            </div>
+        </div>
+        <div class="region-item">
+            <img src="Image/flags/Property 1=DK.png" alt="Denmark" class="region-flag" style="width: 24px; height: 24px;">
+            <div>
+                <span>Denmark</span>
+                <p style="font-size: 12px; color: #6b7280; margin: 4px 0 0;">dennark.com.dk</p>
+            </div>
+        </div>
+        <div class="region-item">
+            <img src="Image/flags/Property 1=AU.png" alt="Australia" class="region-flag" style="width: 24px; height: 24px;">
+            <div>
+                <span>Australia</span>
+                <p style="font-size: 12px; color: #6b7280; margin: 4px 0 0;">shopname.ae</p>
+            </div>
+        </div>
+        <div class="region-item">
+            <img src="Image/flags/Property 1=FR.png" alt="France" class="region-flag" style="width: 24px; height: 24px;">
+            <div>
+                <span>France</span>
+                <p style="font-size: 12px; color: #6b7280; margin: 4px 0 0;">shopname.com.fr</p>
+            </div>
+        </div>
+        <div class="region-item">
+            <img src="Image/flags/Property 1=US.png" alt="United States" class="region-flag" style="width: 24px; height: 24px;">
+            <div>
+                <span>United States</span>
+                <p style="font-size: 12px; color: #6b7280; margin: 4px 0 0;">shopname.ae</p>
+            </div>
+        </div>
+        <div class="region-item">
+            <img src="Image/flags/Property 1=RU.png" alt="Russia" class="region-flag" style="width: 24px; height: 24px;">
+            <div>
+                <span>Russia</span>
+                <p style="font-size: 12px; color: #6b7280; margin: 4px 0 0;">shopname.ru</p>
+            </div>
+        </div>
+        <div class="region-item">
+            <img src="Image/flags/Property 1=CN.png" alt="China" class="region-flag" style="width: 24px; height: 24px;">
+            <div>
+                <span>China</span>
+                <p style="font-size: 12px; color: #6b7280; margin: 4px 0 0;">shopname.ae</p>
+            </div>
+        </div>
+        <div class="region-item">
+            <img src="Image/flags/Property 1=IT.png" alt="Italy" class="region-flag" style="width: 24px; height: 24px;">
+            <div>
+                <span>Italy</span>
+                <p style="font-size: 12px; color: #6b7280; margin: 4px 0 0;">shopname.it</p>
+            </div>
+        </div>
+        <div class="region-item">
+            <img src="Image/flags/Property 1=GB.png" alt="Great Britain" class="region-flag" style="width: 24px; height: 24px;">
+            <div>
+                <span>Great Britain</span>
+                <p style="font-size: 12px; color: #6b7280; margin: 4px 0 0;">shopname.co.uk</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+                <!-- Newsletter -->
+                <div class="newsletter-section">
+                    <h3 class="newsletter-title">Subscribe on our newsletter</h3>
+                    <p class="newsletter-text">Get daily news on upcoming offers from many suppliers all over the world</p>
+                    <div class="newsletter-form">
+                        <input type="email" class="newsletter-input" placeholder="Email">
+                        <button class="newsletter-button">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Sidebar -->
+            <div class="right-sidebar">
+                <div class="user-card">
+                    <div class="user-header">
+                        <span class="user-icon">👤</span>
+                        <span class="user-text">Hi, user let's get started</span>
+                    </div>
+                    <button class="user-button">Join now</button>
+                    <button class="user-button-outline">Log in</button>
+                </div>
+
+                <div class="promo-card-orange">
+                    <p class="promo-text">Get US $10 off with a new supplier</p>
+                </div>
+
+                <div class="promo-card-teal">
+                    <p class="promo-text">Send quotes with supplier preferences</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+<footer>
+    <div class="container footer-container">
+        <div class="footer-grid">
+            <!-- Brand Column -->
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <div class="footer-logo-icon">B</div>
+                    <span class="footer-logo-text">Brand</span>
+                </div>
+                <p class="footer-text">Best information about the company gies here but now lorem ipsum is</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><img src="Image/flags/facebook.png" alt="Facebook"></a>
+                    <a href="#" class="social-icon"><img src="Image/flags/twitter.png" alt="Twitter"></a>
+                    <a href="#" class="social-icon"><img src="Image/flags/linkedin.png" alt="LinkedIn"></a>
+                    <a href="#" class="social-icon"><img src="Image/flags/instagram .png" alt="Instagram"></a>
+                </div>
+            </div>
+
+            <!-- About Column -->
+            <div class="footer-column">
+                <h4 class="footer-title">About</h4>
+                <ul class="footer-list">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Find store</a></li>
+                    <li><a href="#">Categories</a></li>
+                    <li><a href="#">Blogs</a></li>
+                </ul>
+            </div>
+
+            <!-- Partnership Column -->
+            <div class="footer-column">
+                <h4 class="footer-title">Partnership</h4>
+                <ul class="footer-list">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Find store</a></li>
+                    <li><a href="#">Categories</a></li>
+                    <li><a href="#">Blogs</a></li>
+                </ul>
+            </div>
+
+            <!-- Information Column -->
+            <div class="footer-column">
+                <h4 class="footer-title">Information</h4>
+                <ul class="footer-list">
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Money Refund</a></li>
+                    <li><a href="#">Shipping</a></li>
+                    <li><a href="#">Contact us</a></li>
+                </ul>
+            </div>
+
+            <!-- For Users Column -->
+            <div class="footer-column">
+                <h4 class="footer-title">For users</h4>
+                <ul class="footer-list">
+                    <li><a href="#">Login</a></li>
+                    <li><a href="#">Register</a></li>
+                    <li><a href="#">Settings</a></li>
+                    <li><a href="#">My Orders</a></li>
+                </ul>
+            </div>
+
+            <!-- Get App Column -->
+            <div class="footer-column">
+                <h4 class="footer-title">Get app</h4>
+                <div class="app-images">
+                    <a href="#"><img src="Image/tech/app-store.png" alt="App Store" class="app-img"></a>
+                    <a href="#"><img src="Image/tech/google play.png" alt="Google Play" class="app-img"></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2023 Ecommerce.</p>
+            <div class="language-selector-footer">
+                <span>English</span>
+                <span>▼</span>
+            </div>
+        </div>
+    </div>
+</footer>
+ <script>
+        // Cart and wishlist functionality
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+        // Update cart and wishlist counts
+        function updateCounts() {
+            document.getElementById('cartButton').textContent = `🛒 ${cart.length}`;
+            document.getElementById('wishlistButton').textContent = `❤️ ${wishlist.length}`;
+        }
+
+        // Search functionality
+        document.getElementById('searchButton').addEventListener('click', function() {
+            const searchTerm = document.getElementById('searchInput').value;
+            const category = document.getElementById('categorySelect').value;
+            
+            if (searchTerm || category !== 'all') {
+                window.location.href = `product-listing.html?search=${encodeURIComponent(searchTerm)}&category=${category}`;
+            } else {
+                window.location.href = 'product-listing.html';
+            }
+        });
+
+        // Allow search on Enter key
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.getElementById('searchButton').click();
+            }
+        });
+
+        // User button functionality
+        document.getElementById('userButton').addEventListener('click', function() {
+            if (currentUser) {
+                // Show user dropdown (you can implement this)
+                alert(`Logged in as ${currentUser.name}`);
+            } else {
+                // Redirect to login (or show login modal)
+                alert('Please log in');
+                // window.location.href = 'login.html';
+            }
+        });
+
+        // Initialize counts
+        updateCounts();
+
+        // Make all category items clickable
+        document.querySelectorAll('.category-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const category = this.textContent.toLowerCase().replace(' and ', '-').replace(' ', '-');
+                window.location.href = `product-listing.html?category=${category}`;
+            });
+        });
+
+        // Make hero button clickable
+        document.querySelector('.hero-button').addEventListener('click', function() {
+            window.location.href = 'product-listing.html?category=electronics';
+        });
+    </script>
+</body>
+</html>
