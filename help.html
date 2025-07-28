@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Center - E-commerce Website</title>
+    <style>
+        /* Base Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9fafb;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+       /* Header Styles */
+        header {
+            background-color: white;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background-color: #3b82f6;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .logo-text {
+            margin-left: 8px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #3b82f6;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            max-width: 512px;
+            margin: 0 16px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .category-select {
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            padding: 8px 12px;
+            margin: 0 8px;
+            font-size: 14px;
+        }
+
+        .search-button {
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .search-button:hover {
+            background-color: #2563eb;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .language-selector, .shipping-info {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: #4b5563;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            padding: 12px 0;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .nav-item {
+            font-size: 14px;
+            color: #4b5563;
+            text-decoration: none;
+        }
+
+        .nav-item:hover {
+            color: #3b82f6;
+        }
+
+/* Logo Image */
+.logo-image {
+    width: 100px;
+    height: 50px;
+    object-fit: contain;
+}
+
+/* Dropdown Styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+    color: #4b5563;
+    padding: 8px;
+    transition: all 0.2s ease;
+}
+
+.dropdown:hover .dropdown-toggle {
+    color: #3b82f6;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    z-index: 100;
+    padding: 8px 0;
+    top: 100%;
+    left: 0;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.wide-menu {
+    width: 600px;
+    padding: 16px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    left: 0;
+    right: auto;
+}
+
+.dropdown-column {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.dropdown-title {
+    font-weight: 600;
+    padding: 8px 16px;
+    color: #111827;
+}
+
+.dropdown-item {
+    padding: 8px 16px;
+    color: #4b5563;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.dropdown-item:hover {
+    background-color: #f3f4f6;
+    color: #3b82f6;
+    padding-left: 20px;
+}
+
+.dropdown-divider {
+    height: 1px;
+    background-color: #e5e7eb;
+    margin: 8px 0;
+}
+
+/* Icon Buttons */
+.icon-button {
+    cursor: pointer;
+    padding: 8px;
+    font-size: 18px;
+}
+
+.icon-button:hover {
+    color: #3b82f6;
+}
+
+        /* Help Page Specific Styles */
+        .help-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 32px;
+            margin: 40px 0;
+        }
+
+        .help-sidebar {
+            background-color: white;
+            border-radius: 8px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+
+        .help-sidebar-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #1f2937;
+        }
+
+        .help-sidebar-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .help-sidebar-item {
+            margin-bottom: 12px;
+        }
+
+        .help-sidebar-link {
+            display: block;
+            padding: 8px 12px;
+            color: #4b5563;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .help-sidebar-link:hover, .help-sidebar-link.active {
+            background-color: #e0e7ff;
+            color: #3b82f6;
+        }
+
+        .help-content {
+            background-color: white;
+            border-radius: 8px;
+            padding: 32px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .help-section {
+            margin-bottom: 40px;
+        }
+
+        .help-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .help-section-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #1f2937;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .help-section-subtitle {
+            font-size: 18px;
+            font-weight: 500;
+            margin: 24px 0 12px;
+            color: #1f2937;
+        }
+
+        .help-text {
+            color: #4b5563;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .contact-form {
+            margin-top: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: border-color 0.2s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .submit-button:hover {
+            background-color: #2563eb;
+        }
+
+        .faq-item {
+            margin-bottom: 16px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 16px;
+            background-color: #f9fafb;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            padding: 16px;
+            background-color: white;
+            color: #4b5563;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+        }
+
+        .info-table th, .info-table td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .info-table th {
+            background-color: #f9fafb;
+            font-weight: 500;
+            color: #1f2937;
+        }
+
+        .info-table tr:hover {
+            background-color: #f9fafb;
+        }
+
+        .policy-list {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin: 16px 0;
+        }
+
+        .policy-list li {
+            margin-bottom: 8px;
+            color: #4b5563;
+        }
+
+      /* Footer Styles */
+footer {
+    background-color: white;
+    border-top: 1px solid #e5e7eb;
+    margin-top: 48px;
+}
+
+.footer-container {
+    padding: 40px 0 20px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr repeat(5, 1fr);
+    gap: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.footer-logo-icon {
+    width: 32px;
+    height: 32px;
+    background-color: #3b82f6;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.footer-logo-text {
+    margin-left: 8px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #3b82f6;
+}
+
+.footer-text {
+    font-size: 14px;
+    color: #4b5563;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.social-icons {
+    display: flex;
+    gap: 12px;
+}
+
+.social-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+}
+
+.social-icon:hover {
+    transform: translateY(-2px);
+}
+
+.social-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.footer-title {
+    font-weight: 600;
+    margin-bottom: 16px;
+    font-size: 16px;
+    color: #1f2937;
+}
+
+.footer-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-list li {
+    margin-bottom: 12px;
+}
+
+.footer-list a {
+    font-size: 14px;
+    color: #4b5563;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-list a:hover {
+    color: #3b82f6;
+}
+
+.app-images {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.app-img {
+    height: 70px;
+    width: 70px;
+    border-radius: 6px;
+    transition: transform 0.2s ease;
+}
+
+.app-img:hover {
+    transform: translateY(-2px);
+}
+
+.footer-bottom {
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: #4b5563;
+}
+
+.language-selector-footer {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+    </style>
+</head>
+<body>
+     <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <a href="home page.html"><img src="Image/flags/logo.png" class="logo-image"></a>
+            </div>
+            
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search" id="searchInput">
+                <select class="category-select" id="categorySelect">
+                    <option value="all">All category</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="clothing">Clothing</option>
+                    <option value="home-garden">Home & Garden</option>
+                </select>
+                <button class="search-button" id="searchButton">Search</button>
+            </div>
+
+           <div class="header-actions">
+    <a href="profile.html" class="icon-button" id="userButton">👤</a>
+    <a href="wishlist.html" class="icon-button" id="wishlistButton">❤️</a>
+    <a href="cart.html" class="icon-button" id="cartButton">🛒</a>
+</div>
+
+        </div>
+
+        <div class="container">
+            <nav class="nav-menu">
+                <!-- All Categories Mega Dropdown -->
+                <div class="dropdown">
+                    <button class="nav-item dropdown-toggle">
+                        ☰ All category
+                        <span>▼</span>
+                    </button>
+                    <div class="dropdown-menu wide-menu">
+                        <div class="dropdown-column">
+                            <div class="dropdown-title">Home & Garden</div>
+                            <a href="product-listing.html?category=furniture" class="dropdown-item">Furniture</a>
+                            <a href="product-listing.html?category=kitchen" class="dropdown-item">Kitchen</a>
+                            <a href="product-listing.html?category=decor" class="dropdown-item">Decor</a>
+                            <a href="product-listing.html?category=garden" class="dropdown-item">Garden</a>
+                        </div>
+                        <div class="dropdown-column">
+                            <div class="dropdown-title">Electronics</div>
+                            <a href="product-listing.html?category=smartphones" class="dropdown-item">Smartphones</a>
+                            <a href="product-listing.html?category=laptops" class="dropdown-item">Laptops</a>
+                            <a href="product-listing.html?category=cameras" class="dropdown-item">Cameras</a>
+                            <a href="product-listing.html?category=accessories" class="dropdown-item">Accessories</a>
+                        </div>
+                        <div class="dropdown-column">
+                            <div class="dropdown-title">Clothing</div>
+                            <a href="product-listing.html?category=men" class="dropdown-item">Men's Wear</a>
+                            <a href="product-listing.html?category=women" class="dropdown-item">Women's Wear</a>
+                            <a href="product-listing.html?category=kids" class="dropdown-item">Kids</a>
+                            <a href="product-listing.html?category=accessories" class="dropdown-item">Accessories</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="product-listing.html?filter=hot-offers" class="nav-item">Hot offers</a>
+                <a href="product-listing.html?filter=gift-boxes" class="nav-item">Gift boxes</a>
+                <a href="#" class="nav-item">Projects</a>
+                
+                <!-- Help Dropdown -->
+                <div class="dropdown">
+                    <button class="nav-item dropdown-toggle">
+                        Help
+                        <span>▼</span>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="help.html" class="dropdown-item">Contact Us</a></br>
+                        <a href="help.html" class="dropdown-item">FAQs</a></br>
+                        <a href="help.html" class="dropdown-item">Shipping Info</a></br>
+                        <a href="help.html" class="dropdown-item">Returns Policy</a></br>
+                    </div>
+                </div>
+                
+                <!-- Language/Currency Dropdown -->
+                <div class="dropdown">
+                    <button class="dropdown-toggle">
+                        <span>🌐</span>
+                        English, USD
+                        <span>▼</span>
+                    </button>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-title">Language</div>
+                        <a href="#" class="dropdown-item">English</a></br>
+                        <a href="#" class="dropdown-item">Spanish</a></br>
+                        <a href="#" class="dropdown-item">French</a></br>
+                    </div>
+                </div>
+
+                <!-- Shipping Dropdown -->
+                <div class="dropdown">
+                    <button class="dropdown-toggle">
+                        Ship to <span>🇺🇸</span>
+                        <span>▼</span>
+                    </button>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-title">Shipping Country</div>
+                        <a href="#" class="dropdown-item">🇺🇸 United States</a></br>
+                        <a href="#" class="dropdown-item">🇬🇧 United Kingdom</a></br>
+                        <a href="#" class="dropdown-item">🇨🇦 Canada</a></br>
+                        <a href="#" class="dropdown-item">🇦🇺 Australia</a></br>
+                        <a href="#" class="dropdown-item">🇪🇺 European Union</a></br>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="help-container">
+            <!-- Help Sidebar -->
+            <div class="help-sidebar">
+                <h3 class="help-sidebar-title">Help Center</h3>
+                <ul class="help-sidebar-list">
+                    <li class="help-sidebar-item">
+                        <a href="#contact" class="help-sidebar-link active">Contact Us</a>
+                    </li>
+                    <li class="help-sidebar-item">
+                        <a href="#faqs" class="help-sidebar-link">FAQs</a>
+                    </li>
+                    <li class="help-sidebar-item">
+                        <a href="#shipping" class="help-sidebar-link">Shipping Information</a>
+                    </li>
+                    <li class="help-sidebar-item">
+                        <a href="#returns" class="help-sidebar-link">Returns Policy</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Help Content -->
+            <div class="help-content">
+                <!-- Contact Us Section -->
+                <section id="contact" class="help-section">
+                    <h2 class="help-section-title">Contact Us</h2>
+                    <p class="help-text">
+                        Have questions or need assistance? Our customer service team is here to help you with any inquiries you may have.
+                    </p>
+                    
+                    <div class="contact-form">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Your Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Enter your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" id="email" class="form-control" placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject" class="form-label">Subject</label>
+                            <input type="text" id="subject" class="form-control" placeholder="What's this about?">
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea id="message" class="form-control" placeholder="How can we help you?"></textarea>
+                        </div>
+                        <button type="submit" class="submit-button">Send Message</button>
+                    </div>
+
+                    <h3 class="help-section-subtitle">Other Ways to Reach Us</h3>
+                    <p class="help-text">
+                        <strong>Email:</strong> support@ecommerce.com<br>
+                        <strong>Phone:</strong> +1 (800) 123-4567<br>
+                        <strong>Live Chat:</strong> Available 24/7 on our website<br>
+                        <strong>Business Hours:</strong> Monday - Friday, 9:00 AM - 6:00 PM EST
+                    </p>
+                </section>
+
+                <!-- FAQs Section -->
+                <section id="faqs" class="help-section">
+                    <h2 class="help-section-title">Frequently Asked Questions</h2>
+                    <p class="help-text">
+                        Find quick answers to common questions about our products, services, and policies.
+                    </p>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How do I track my order?</span>
+                            <span>+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Once your order has been shipped, you'll receive a confirmation email with a tracking number. You can use this tracking number on our website or the carrier's website to track your package in real-time.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What payment methods do you accept?</span>
+                            <span>+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We accept all major credit cards (Visa, MasterCard, American Express, Discover), PayPal, Apple Pay, and Google Pay. We also offer financing options through Affirm for eligible purchases.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How can I change or cancel my order?</span>
+                            <span>+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>If your order hasn't been processed for shipping yet, you can request changes or cancellation by contacting our customer service team immediately. Once an order has shipped, you'll need to wait until you receive it and then initiate a return if needed.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Do you offer international shipping?</span>
+                            <span>+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, we ship to most countries worldwide. Shipping costs and delivery times vary depending on the destination. During checkout, you'll see the available shipping options and costs for your location.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What is your return policy?</span>
+                            <span>+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We offer a 30-day return policy for most items. Items must be unused, in their original packaging, and with all tags attached. Some items may be final sale or have different return policies, which will be clearly marked on the product page.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Shipping Information Section -->
+                <section id="shipping" class="help-section">
+                    <h2 class="help-section-title">Shipping Information</h2>
+                    <p class="help-text">
+                        We offer various shipping options to meet your needs. Below you'll find detailed information about our shipping policies and options.
+                    </p>
+
+                    <h3 class="help-section-subtitle">Shipping Options</h3>
+                    <table class="info-table">
+                        <thead>
+                            <tr>
+                                <th>Shipping Method</th>
+                                <th>Delivery Time</th>
+                                <th>Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Standard Shipping</td>
+                                <td>3-5 business days</td>
+                                <td>$5.99 (Free on orders over $50)</td>
+                            </tr>
+                            <tr>
+                                <td>Expedited Shipping</td>
+                                <td>2 business days</td>
+                                <td>$12.99</td>
+                            </tr>
+                            <tr>
+                                <td>Overnight Shipping</td>
+                                <td>1 business day</td>
+                                <td>$24.99</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3 class="help-section-subtitle">Processing Time</h3>
+                    <p class="help-text">
+                        All orders are processed within 1-2 business days (excluding weekends and holidays) after receiving your order confirmation email. You will receive another notification when your order has shipped.
+                    </p>
+
+                    <h3 class="help-section-subtitle">International Shipping</h3>
+                    <p class="help-text">
+                        International orders may be subject to customs fees, import duties, and taxes, which are the responsibility of the customer. These charges vary by country and are not included in the item price or shipping cost.
+                    </p>
+                </section>
+
+                <!-- Returns Policy Section -->
+                <section id="returns" class="help-section">
+                    <h2 class="help-section-title">Returns Policy</h2>
+                    <p class="help-text">
+                        We want you to be completely satisfied with your purchase. If you're not happy with an item, you may return it within 30 days of delivery for a refund or exchange.
+                    </p>
+
+                    <h3 class="help-section-subtitle">Return Process</h3>
+                    <ol class="policy-list">
+                        <li>Initiate your return through our Returns Center or contact customer service</li>
+                        <li>Pack the item securely in its original packaging with all tags attached</li>
+                        <li>Include the completed return form that came with your order</li>
+                        <li>Ship the package using the provided return label or your preferred carrier</li>
+                    </ol>
+
+                    <h3 class="help-section-subtitle">Return Conditions</h3>
+                    <ul class="policy-list">
+                        <li>Items must be unused, unworn, and in their original condition</li>
+                        <li>Original tags must be attached and packaging included</li>
+                        <li>Proof of purchase is required</li>
+                        <li>Certain items like personal care products and underwear may not be returnable</li>
+                    </ul>
+
+                    <h3 class="help-section-subtitle">Refunds</h3>
+                    <p class="help-text">
+                        Refunds will be issued to the original payment method within 5-10 business days after we receive and process your return. Shipping costs are non-refundable unless the return is due to our error.
+                    </p>
+
+                    <h3 class="help-section-subtitle">Exchanges</h3>
+                    <p class="help-text">
+                        For exchanges, please return the original item following the return process and place a new order for the item you'd like instead. This ensures you receive your new item as quickly as possible.
+                    </p>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-grid">
+                <!-- Brand Column -->
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <div class="footer-logo-icon">B</div>
+                        <span class="footer-logo-text">Brand</span>
+                    </div>
+                    <p class="footer-text">Best information about the company gies here but now lorem ipsum is</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><img src="Image/flags/facebook.png" alt="Facebook"></a>
+                        <a href="#" class="social-icon"><img src="Image/flags/twitter.png" alt="Twitter"></a>
+                        <a href="#" class="social-icon"><img src="Image/flags/linkedin.png" alt="LinkedIn"></a>
+                        <a href="#" class="social-icon"><img src="Image/flags/instagram .png" alt="Instagram"></a>
+                    </div>
+                </div>
+
+                <!-- About Column -->
+                <div class="footer-column">
+                    <h4 class="footer-title">About</h4>
+                    <ul class="footer-list">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Find store</a></li>
+                        <li><a href="#">Categories</a></li>
+                        <li><a href="#">Blogs</a></li>
+                    </ul>
+                </div>
+
+                <!-- Partnership Column -->
+                <div class="footer-column">
+                    <h4 class="footer-title">Partnership</h4>
+                    <ul class="footer-list">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Find store</a></li>
+                        <li><a href="#">Categories</a></li>
+                        <li><a href="#">Blogs</a></li>
+                    </ul>
+                </div>
+
+                <!-- Information Column -->
+                <div class="footer-column">
+                    <h4 class="footer-title">Information</h4>
+                    <ul class="footer-list">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Money Refund</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Contact us</a></li>
+                    </ul>
+                </div>
+
+                <!-- For Users Column -->
+                <div class="footer-column">
+                    <h4 class="footer-title">For users</h4>
+                    <ul class="footer-list">
+                        <li><a href="#">Login</a></li>
+                        <li><a href="#">Register</a></li>
+                        <li><a href="#">Settings</a></li>
+                        <li><a href="#">My Orders</a></li>
+                    </ul>
+                </div>
+
+                <!-- Get App Column -->
+                <div class="footer-column">
+                    <h4 class="footer-title">Get app</h4>
+                    <div class="app-images">
+                        <a href="#"><img src="Image/tech/app-store.png" alt="App Store" class="app-img"></a>
+                        <a href="#"><img src="Image/tech/google play.png" alt="Google Play" class="app-img"></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2023 Ecommerce.</p>
+                <div class="language-selector-footer">
+                    <span>English</span>
+                    <span>▼</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Cart and wishlist functionality
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+        // Update cart and wishlist counts
+        function updateCounts() {
+            document.getElementById('cartButton').textContent = `🛒 ${cart.length}`;
+            document.getElementById('wishlistButton').textContent = `❤️ ${wishlist.length}`;
+        }
+
+        // Search functionality
+        document.getElementById('searchButton').addEventListener('click', function() {
+            const searchTerm = document.getElementById('searchInput').value;
+            const category = document.getElementById('categorySelect').value;
+            
+            if (searchTerm || category !== 'all') {
+                window.location.href = `product-listing.html?search=${encodeURIComponent(searchTerm)}&category=${category}`;
+            } else {
+                window.location.href = 'product-listing.html';
+            }
+        });
+
+        // Allow search on Enter key
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.getElementById('searchButton').click();
+            }
+        });
+
+        // User button functionality
+        document.getElementById('userButton').addEventListener('click', function() {
+            if (currentUser) {
+                // Show user dropdown (you can implement this)
+                alert(`Logged in as ${currentUser.name}`);
+            } else {
+                // Redirect to login (or show login modal)
+                alert('Please log in');
+                // window.location.href = 'login.html';
+            }
+        });
+
+        // FAQ toggle functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                faqItem.classList.toggle('active');
+                
+                // Toggle the plus/minus icon
+                const icon = question.querySelector('span:last-child');
+                icon.textContent = faqItem.classList.contains('active') ? '−' : '+';
+            });
+        });
+
+        // Initialize counts
+        updateCounts();
+
+        // Highlight current section in sidebar when scrolling
+        const sections = document.querySelectorAll('.help-section');
+        const sidebarLinks = document.querySelectorAll('.help-sidebar-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (window.scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            sidebarLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scrolling for sidebar links
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetSection.offsetTop - 20,
+                    behavior: 'smooth'
+                });
+                
+                // Update active link
+                sidebarLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
